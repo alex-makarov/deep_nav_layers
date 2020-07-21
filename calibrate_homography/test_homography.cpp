@@ -56,12 +56,15 @@ public:
     // apply homography
     warpPerspective(seg_data, warped, homography, Size(costmap_height, costmap_width));
 
+    transpose(warped, warped);  
+    flip(warped, warped, 0);
+
     // resize warped image for easier viewing
-    Mat scaled_warped;
-    resize(warped, scaled_warped, Size(), 5, 5);
+//    Mat scaled_warped;
+//    resize(warped, scaled_warped, Size(), 1, 1);
 
     imshow("Warped Segmentation Data", warped);
-    imshow("Warped Segmentation Data (scaled)", scaled_warped);
+//    imshow("Warped Segmentation Data (scaled)", scaled_warped);
   }
     
 };
@@ -69,7 +72,7 @@ public:
 int main(int argc, char **argv)
 {
   // load the calculator with the appropriate values
-  HomographyTester h_test = HomographyTester("../parameters.yml");
+  HomographyTester h_test = HomographyTester("/home/alex/src/catkin_ws/src/robaka-ros/conf/semantic-segmentation/parameters.yml");
 
   h_test.showResults();
   waitKey(0);

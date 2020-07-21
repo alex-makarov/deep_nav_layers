@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   dynamic_reconfigure
   roscpp
   cv_bridge
+  image_transport
 )
 
 find_package(OpenCV REQUIRED)
@@ -20,10 +21,9 @@ find_package(OpenCV REQUIRED)
 # find_package(Boost REQUIRED COMPONENTS system)
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+ generate_dynamic_reconfigure_options(
+   cfg/deep_nav_layers.cfg
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -37,7 +37,7 @@ find_package(OpenCV REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES deep_nav
-  CATKIN_DEPENDS costmap_2d dynamic_reconfigure
+  CATKIN_DEPENDS costmap_2d dynamic_reconfigure image_transport
 #  DEPENDS system_lib
 )
 
